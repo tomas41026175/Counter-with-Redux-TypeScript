@@ -1,12 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartSlice,{ItemType} from './slice/cartSlice';
+import cartSlice, { ItemType } from './slice/cartSlice';
 
-
-
-export interface RootState {
+export type RootState = {
     myCart: ItemType[];
-}
-
+};
 
 const store = configureStore({
     reducer: {

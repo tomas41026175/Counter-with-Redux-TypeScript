@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux/es/exports'
+import { useSelector, useDispatch } from 'react-redux'
 import { add, minus, ItemType } from '../store/slice/cartSlice'
 import { RootState } from '../store/index'
 
-interface CounterProps {
+type CounterProps = {
     tempData: ItemType;
     title: string;
 }
@@ -12,18 +12,18 @@ function Counter({ tempData, title }: CounterProps) {
     const dispatch = useDispatch()
     const storeState = useSelector((state: RootState) => state.myCart);
     const [nowCount, setNowCount] = useState(0);
+    console.log(storeState)
 
     useEffect(() => {
-        const targetData = storeState.find((e) => e.id === tempData.id);
-        const newCount = targetData ? targetData.count : 0;
+        const targetData = storeState.find((e) => e.tempData.id === tempData.tempData.id);
+        const newCount = targetData ? targetData.tempData.count : 0;
         setNowCount(newCount);
     }, [tempData, storeState]);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const dataAtt = e.currentTarget.getAttribute('data-btn')
-        // console.log('dataAtt', dataAtt)
+        const dataAtt = e.currentTarget.getAttribute('data-btn');
 
-        if (dataAtt == 'add') {
+        if (dataAtt === 'add') {
             dispatch(add(tempData));
         } else {
             dispatch(minus(tempData));
@@ -34,12 +34,12 @@ function Counter({ tempData, title }: CounterProps) {
         <div className='flex flex-col justify-center items-center w-1/2 mx-auto gap-4'>
             <h2>{title}</h2>
             <div className='flex gap-8 items-center'>
-                <button className='btn-style' onClick={(e) => { handleClick(e) }} data-btn="minus">-</button >
+                <button className='btn-style' onClick={handleClick} data-btn="minus">-</button>
                 <div>{nowCount}</div>
-                <button className='btn-style' onClick={(e) => { handleClick(e) }} data-btn="add">+</button >
+                <button className='btn-style' onClick={handleClick} data-btn="add">+</button>
             </div>
         </div>
     )
 }
 
-export default Counter
+export default Counter;
