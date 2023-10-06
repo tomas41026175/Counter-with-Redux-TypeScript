@@ -1,6 +1,9 @@
 # Counter with Redux & TypeScript
  This project is a counter application built using Redux and TypeScript. The goal is to demonstrate how to combine the powerful type system of TypeScript with the state management capabilities of Redux to create a robust and maintainable application.
 
+## Demo
+Link : https://counter-beryl-ten.vercel.app/
+
 ## Features
 **Counter Management**: Leverages Redux for state management, ensuring consistency and easy tracking across the application.
 **Dynamically Add Counters**: Users can dynamically add counters, each operating independently.
